@@ -8,7 +8,7 @@ pipeline {
 	    }
             stage('Run Ansible playbook') {
                steps {
-	               sh ' ansible-playbook var/lib/jenkins/workspace/Chatbot-Active-Ai-job/ansible/deploy-chatbot-ai.yml'
+	               sh ' ansible-playbook /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/ansible/deploy-chatbot-ai.yml'
                      
 	             
          }
