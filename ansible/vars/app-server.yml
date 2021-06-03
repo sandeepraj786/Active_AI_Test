@@ -1,0 +1,7 @@
+#Container-Image
+app_name: chatbot-Ai
+app_image: nginx:latest
+container_port: 80
+volume_name: myvolume
+source_path: /var/log/nginx
+container_path: /nginx
