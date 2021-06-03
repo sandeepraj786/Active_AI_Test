@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+	    stage('SCM Checkout'){
+             steps{    
+		    git 'https://github.com/sandeepraj786/Chatbot-Ai.git'
+		 }
+	    }
+            stage('Run Ansible playbook') {
+               steps {
+                     sh ' ansible-playbook /var/lib/jenkins/workspace/Chatbot-Ai/ansible/ecs_ansible.yml'
+	             
+         }
+       }
+    }
+}
