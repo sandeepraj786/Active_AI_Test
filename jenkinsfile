@@ -9,7 +9,7 @@ pipeline {
 	    
 	    stage('crate image and push to ecr'){
 	        steps{
-		        cd /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/backend
+		        sh 'cd /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/backend'
 			sh 'sudo docker build -t backend .'
 			sh 'docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
 			sh 'docker push 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
