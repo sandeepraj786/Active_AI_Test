@@ -85,7 +85,7 @@
             memory: 200
             portMappings:
               - containerPort: '{{ container_port }}'
-                hostPort: 0
+                hostPort: 8000
                 protocol: 'tcp'
             mountPoints:
               - containerPath: '{{container_path}}'
