@@ -10,7 +10,7 @@ pipeline {
 	    stage('crate image and push to ecr'){
 	        steps{
 			sh 'pwd'
-			sh 'cd backend'
+			sh 'cd backend/'
 			sh 'pwd'
 			sh 'docker build -t backend .'
 			sh 'docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
