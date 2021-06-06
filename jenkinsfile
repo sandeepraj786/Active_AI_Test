@@ -6,6 +6,15 @@ pipeline {
 		    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
 		 }
 	    }
+	    
+	    stage('crate image and push to ecr'){
+	        steps{
+		        cd /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/backend
+			sudo docker build -t backend .
+			
+		}
+	          
+	    }
             stage('Run Ansible playbook') {
                steps {
 	               sh ' ansible-playbook /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/ansible/deploy-chatbot-ai.yml'
