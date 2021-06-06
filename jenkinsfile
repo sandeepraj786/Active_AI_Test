@@ -14,7 +14,7 @@ pipeline {
 			docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
 			docker push 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
 			
-		}
+		    }
 	          
 	    }
             stage('Run Ansible playbook') {
