@@ -14,8 +14,12 @@ pipeline {
                 steps{			
 			sudo docker build -t backend .
 			}
+		steps{	
 			docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
+			}
+	         steps{		
 			docker push 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
+			}
 			
 		    }
 	          
