@@ -82,10 +82,10 @@
             essential: true
             image: '{{ app_image }}'
             cpu: 1024
-            memory: 10240
+            memory: 1024
             portMappings:
               - containerPort: '{{ container_port }}'
-                hostPort: 80
+                hostPort: 0
                 protocol: 'tcp'
             mountPoints:
               - containerPath: '{{container_path}}'
