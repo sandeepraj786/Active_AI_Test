@@ -9,9 +9,9 @@ pipeline {
 	    
 	    stage('crate image and push to ecr'){
 	        steps{
-			sh 'docker build -t backend .'
-			sh 'docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
-			sh 'docker push 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
+			sh ' sudo docker build -t backend .'
+			sh ' sudo docker tag backend:latest 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
+			sh ' sudo docker push 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest'
 			
 			
 		    }
