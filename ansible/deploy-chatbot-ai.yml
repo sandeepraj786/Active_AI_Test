@@ -81,8 +81,8 @@
           - name: '{{ app_name }}-container'
             essential: true
             image: '{{ app_image }}'
-            cpu: 128
-            memory: 200
+            cpu: 1024
+            memory: 10240
             portMappings:
               - containerPort: '{{ container_port }}'
                 hostPort: 8000
