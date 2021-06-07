@@ -1,6 +1,6 @@
 #VPC Details
 vpc_id: "vpc-95ed50fe"
-cluster_name: Active-Ai-Chatbot
+cluster_name: Active-Ai-Test
 
 #Container details
 alb_listener_port: 80
