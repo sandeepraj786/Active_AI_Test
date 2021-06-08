@@ -96,6 +96,37 @@
               sourcePath: '{{source_path}}'
       register: td
     - debug: var=td verbosity=2
+    
+    
+    
+    #Create a Task definition for our container
+    - name: Create a task definition for ecs
+      tags: create_td
+      ecs_taskdefinition:
+        state: present
+        family: '{{ app_name }}'
+        network_mode: bridge
+        force_create: true
+        #execution_role_arn: 'arn:aws:iam::522246307890:role/ecsInstanceRole'
+        containers:
+          - name: '{{ app_name }}-container'
+            essential: true
+            image: '{{ app_image }}'
+            cpu: "{{task_cpu}}"
+            memory: "{{task_memory}}"
+            portMappings:
+              - containerPort: '{{ container_port }}'
+                hostPort: '{{ container_port }}'
+                protocol: 'tcp'
+            mountPoints:
+              - containerPath: '{{container_path}}'
+                sourceVolume: '{{volume_name}}'
+        volumes: 
+          - name: '{{volume_name}}'
+            host:
+              sourcePath: '{{source_path}}'
+      register: td
+    - debug: var=td verbosity=2
 
     # Create a service using the task definition to be run under our ECS cluster
     - name: 'Create ECS Service for app - {{ app_name }} on ECS cluster - {{ cluster_name }}'
