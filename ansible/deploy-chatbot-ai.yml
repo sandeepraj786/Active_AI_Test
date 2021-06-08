@@ -81,11 +81,11 @@
           - name: '{{ app_name }}-container'
             essential: true
             image: '{{ app_image }}'
-            cpu: 128
-            memory: 1024
+            cpu: "{{task_cpu}}"
+            memory: "{{task_memory}}"
             portMappings:
               - containerPort: '{{ container_port }}'
-                hostPort: 80
+                hostPort: '{{ container_port }}'
                 protocol: 'tcp'
             mountPoints:
               - containerPath: '{{container_path}}'
