@@ -7,7 +7,7 @@ task_memory: 1024
 
 host_name: webserver
 host: http://18.220.64.40:80
-volume_name1: " "
+volume_name1: myvolume
 source_path1: " "
 container_path1:  " "
 
