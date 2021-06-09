@@ -7,9 +7,9 @@ task_memory: 1024
 
 host_name: webserver
 host: http://18.220.64.40:80
-volume_name1: myvolume
-source_path1: /var/log/backend
-container_path1: /backend
+volume_name1: 0
+source_path1: 0
+container_path1: 0
 
 volume_name2: nginx-volume
 source_path2: /var/log/nginx-volume
