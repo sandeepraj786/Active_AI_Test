@@ -4,6 +4,14 @@ app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
 container_port: 80
 task_cpu: 128
 task_memory: 1024
-volume_name: myvolume
-source_path: /var/log/backend
-container_path: /backend
+
+host_name: webserver
+host: http://18.220.64.40:80
+volume_name1: myvolume
+source_path1: /var/log/backend
+container_path1: /backend
+
+volume_name2: nginx-volume
+source_path2: /var/log/nginx-volume
+container_path2: /nginx-volume
+
