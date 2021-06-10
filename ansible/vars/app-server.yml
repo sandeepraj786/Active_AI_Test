@@ -11,7 +11,7 @@ host: http://18.220.64.40:80
 
 volume_name1: null
 source_path1: null
-container_path1:  null
+container_path1: null
 
 volume_name2: nginx-volume
 source_path2: /var/log/nginx-volume
