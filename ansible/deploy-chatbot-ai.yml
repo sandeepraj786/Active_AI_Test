@@ -91,12 +91,11 @@
                 hostPort: '{{ container_port }}'
                 protocol: 'tcp'
             mountPoints:
-                if($container_path1!=null & $container_path2!=null & volume_name1!=null &volume_name2!=null){
+                 when($container_path1!=null & $container_path2!=null & volume_name1!=null &volume_name2!=null)
               - containerPath: '{{container_path1}}'
                 sourceVolume: '{{volume_name1}}'
               - containerPath: '{{container_path2}}'
                 sourceVolume: '{{volume_name2}}'
-                }
                 
         volumes: 
           - name: '{{volume_name1}}'
