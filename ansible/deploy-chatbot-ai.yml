@@ -101,9 +101,9 @@
                 
         volumes: 
           - name: '{{volume_name1}}'
-            when: volume_name1 | length > 0
+            when: volumes.volume_name1 | length > 0
           - name: '{{volume_name2}}'
-            when: volume_name2 | length > 0
+            when: volumes.volume_name2 | length > 0
             host:
               sourcePath: '{{source_path1}}'
               when: source_path1 | length > 0
