@@ -91,18 +91,24 @@
                 hostPort: '{{ container_port }}'
                 protocol: 'tcp'
             mountPoints:
-                 when($container_path1!=null & $container_path2!=null & volume_name1!=null &volume_name2!=null)
               - containerPath: '{{container_path1}}'
                 sourceVolume: '{{volume_name1}}'
+                when: container_path1 | length > 0 and volume_name1 | length > 0
               - containerPath: '{{container_path2}}'
                 sourceVolume: '{{volume_name2}}'
+                when: container_path2 | length > 0 and volume_name2 | length > 0
+                
                 
         volumes: 
           - name: '{{volume_name1}}'
+            when: volume_name1 | length > 0
           - name: '{{volume_name2}}'
+            when: volume_name2 | length > 0
             host:
               sourcePath: '{{source_path1}}'
+              when: source_path1 | length > 0
               sourcePath: '{{source_path2}}'
+              when: source_path2 | length > 0
       register: td
     - debug: var=td verbosity=2
     
