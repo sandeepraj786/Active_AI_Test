@@ -91,23 +91,23 @@
                 hostPort: '{{ container_port }}'
                 protocol: 'tcp'
             mountPoints:
-           # when: container_path1 != "" and volume_name1 != ""
+                when: container_path1 != "" and volume_name1 != ""
               - containerPath: '{{container_path1}}'
                 sourceVolume: '{{volume_name1}}'
-           # when: container_path2 != "" and volume_name2 != ""    
+                when: container_path2 != "" and volume_name2 != ""    
               - containerPath: '{{container_path2}}'
                 sourceVolume: '{{volume_name2}}'
                 
         volumes: 
-        when: volume_name1 != "" 
-        when: volume_name2 != ""
+            when: volume_name1 != "" 
           - name: '{{volume_name1}}'
+            when: volume_name1 != ""
           - name: '{{volume_name2}}'
             
             host:
-            when: source_path1 != ""
-            when: source_path2 != ""
+              when: source_path1 != ""
               sourcePath: '{{source_path1}}'
+              when: source_path2 != ""
               sourcePath: '{{source_path2}}'
               
       register: td
