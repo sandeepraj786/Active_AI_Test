@@ -101,14 +101,20 @@
         volumes: 
           - name: '{{volume_name1}}'
             when: volume_name1 != ""
-          - name: '{{volume_name2}}'
-            when: volume_name2 != ""
-            
             host:
               sourcePath: '{{source_path1}}'
               when: source_path1 != ""
+          - name: '{{volume_name2}}'
+            when: volume_name2 != ""
+            host:
               sourcePath: '{{source_path2}}'
               when: source_path2 != ""
+            
+           # host:
+            #  sourcePath: '{{source_path1}}'
+             # when: source_path1 != ""
+              #sourcePath: '{{source_path2}}'
+              #when: source_path2 != ""
               
       register: td
     - debug: var=td verbosity=2
