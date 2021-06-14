@@ -103,12 +103,12 @@
             when: volume_name1 != ""
             host:
               sourcePath: '{{source_path1}}'
-              when: source_path1 != ""
+              #when: source_path1 != ""
           - name: '{{volume_name2}}'
             when: volume_name2 != ""
             host:
               sourcePath: '{{source_path2}}'
-              when: source_path2 != ""
+            #  when: source_path2 != ""
             
            # host:
             #  sourcePath: '{{source_path1}}'
