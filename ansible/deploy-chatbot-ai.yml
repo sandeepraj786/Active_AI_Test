@@ -99,16 +99,17 @@
                 when: containerPath != "" and sourceVolume != ""
                 
         volumes: 
-            when: name != ""
+            
           - name: '{{volume_name1}}'
+            when: name != ""
             host:
-            when: sourcePath != "" 
+              when: sourcePath != "" 
               sourcePath: '{{source_path1}}'
               
           - name: '{{volume_name2}}'
             when: name != ""
             host:
-            when: sourcePath != "" 
+              when: sourcePath != "" 
               sourcePath: '{{source_path2}}'
              
             
