@@ -11,13 +11,11 @@ host: http://18.220.64.40:80
 
 
 
-volume_name1: nginx-volume
-source_path1: /var/log/nginx-volume
-container_path1: /nginx-volume
+volume_name: nginx-volume
+source_path: /var/log/nginx-volume
+container_path: /nginx-volume
 
-volume_name2: myvolume
-source_path2: /mnt/myvolume
-container_path2: /myvolume
+
 
 
 
