@@ -100,12 +100,12 @@
                 
         volumes: 
           - name: '{{volume_name1}}'
-            when: name != ""
+            #when: name != ""
             host:
               sourcePath: '{{source_path1}}'
               when: sourcePath != ""
           - name: '{{volume_name2}}'
-            when: name != ""
+            #when: name != ""
             host:
               sourcePath: '{{source_path2}}'
               when: sourcePath != ""
