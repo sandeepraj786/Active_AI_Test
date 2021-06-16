@@ -3,8 +3,8 @@
   connection: local
   gather_facts: False
   vars_files:
-    - "vars/variables.yml"
-    - "vars/app-server.yml"
+    - "vars/{{ env }}/variables.yml"
+    - "vars/{{ env }}/app-server.yml"
   tasks:
     #Gather facts related to target group
     - name: Gather facts related to target group
