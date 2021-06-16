@@ -6,12 +6,12 @@ pipeline {
 		    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
 		 }
 	    }
-	    parameters {
-                choice(name: 'env', choices: ['preprod', 'prod'], description: '')
-		string(name: 'BRANCH', defaultValue: 'master', description: '')
-		choice(name: 'Apllication', choices: ['Test',Final], description: '')
-		string(name: 'app-name', defaultValue: 'chatbot-Ai')
-    }
+	    #parameters {
+             #   choice(name: 'env', choices: ['preprod', 'prod'], description: '')
+		#string(name: 'BRANCH', defaultValue: 'master', description: '')
+		#choice(name: 'Apllication', choices: ['Test',Final], description: '')
+		#string(name: 'app-name', defaultValue: 'chatbot-Ai')
+    #}
 	    
 	    
 	    
