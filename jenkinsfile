@@ -7,10 +7,10 @@ pipeline {
 		 }
 	    }
 	    parameters {
-        choice(name: 'env', choices: ['preprod', 'prod'], description: '')
-        string(name: 'BRANCH', defaultValue: 'master', description: '')
-        choice(name: 'Apllication', choices: ['Test',Final], description: '')
-        string(name: 'app-name', defaultValue: 'chatbot-Ai')
+                choice(name: 'env', choices: ['preprod', 'prod'], description: '')
+		string(name: 'BRANCH', defaultValue: 'master', description: '')
+		choice(name: 'Apllication', choices: ['Test',Final], description: '')
+		string(name: 'app-name', defaultValue: 'chatbot-Ai')
     }
 	    
 	    
