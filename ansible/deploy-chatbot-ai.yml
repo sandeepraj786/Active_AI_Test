@@ -43,7 +43,7 @@
         state: present
         tags:
           Name: '{{ app_name }}-ecs-tg'
-          description: 'Active-ai target group'
+          #description: 'Active-ai target group'
           #application: 'retail'
           #environment: '{{ env }}'
       register: ecs_tg_new
@@ -60,7 +60,7 @@
           - "{{ subnet_id_2 }}"
         listeners:
           - Protocol: HTTP
-            Port: 80
+            Port: '{{alb_listener_port}}'
             DefaultActions:
               - Type: forward
                 TargetGroupName: "{{ ecs_tg.target_groups[0].target_group_name if (ecs_tg.target_groups|length > 0) else ecs_tg_new.target_group_name}}"
