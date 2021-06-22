@@ -3,8 +3,8 @@
 
     app_name: chatbot-Ai
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
-    container_port: 80
-    host_port: 0
+    container_port: 8080
+    host_port: 80
 
     task_cpu: 128
     task_memory: 1024
