@@ -9,7 +9,7 @@
     - name: Initialize
       tags: Initialize the app properties and defaults
       set_fact:
-         application: "{{ applications[app] }}"
+         application: "{{ applications[morfeusadmin,morfeus-prod] }}"
          defaults: "{{ applications['defaults'] }}"
     #Gather facts related to target group
     - name: Gather facts related to target group
