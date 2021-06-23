@@ -1,24 +1,45 @@
-#Container-Image
+applications:
+  defaults:
+    app_name: 
+    app_image: 
+    container_port: 
+    host_port: 
+    task_cpu: 
+    task_memory: 
+    host_name: 
+    host: 
+    volume_name: 
+    source_path: 
+    container_path: 
 
 
+  morfeusadmin:
     app_name: chatbot-Ai
-    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
-    container_port: 8080
-    host_port: 80
-
+    app_image: nginx:latest
+    container_port: 80
+    host_port: 0
     task_cpu: 128
     task_memory: 1024
-
     host_name: webserver
     host: http://18.220.64.40:80
-
-
-
     volume_name: nginx-volume
     source_path: /var/log/nginx-volume
     container_path: /nginx-volume
 
- 
+
+  morfeus-prod:
+    app_name: chatbot-Ai
+    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
+    container_port: 80
+    host_port: 0
+    task_cpu: 128
+    task_memory: 1024
+    host_name: webserver
+    host: http://18.220.64.40:80
+    volume_name: nginx-volume
+    source_path: /var/log/nginx-volume
+    container_path: /nginx-volume
+
    
    
   

@@ -10,7 +10,7 @@
     - name: Gather facts related to target group
       elb_target_group_info:
         names:
-          - '{{ app_name }}-ecs-tg'
+          - '{{ application.app_name }}-ecs-tg'
         region: 'us-east-2'
       register: ecs_tg
     - debug: var=ecs_tg verbosity=2
@@ -19,7 +19,7 @@
     - name: Gather facts related to load balancer
       elb_application_lb_info:
         names:
-          - '{{ app_name }}-ecs-lb'
+          - '{{ application.app_name }}-ecs-lb'
       register: ecs_lb
     - debug: var=ecs_lb verbosity=2
 
@@ -27,7 +27,7 @@
     - name: Create target group for ALB to manage traffic to ECS cluster
       when: '(ecs_tg.target_groups| length == 0)'
       elb_target_group:
-        name: '{{ app_name }}-ecs-tg'
+        name: '{{ application.app_name }}-ecs-tg'
         vpc_id: '{{ vpc_id }}'
         target_type: instance
         protocol: HTTP
@@ -42,7 +42,7 @@
         successful_response_codes: '{{tg_successful_response_codes}}'
         state: present
         tags:
-          Name: '{{ app_name }}-ecs-tg'
+          Name: '{{ application.app_name }}-ecs-tg'
           #description: 'Active-ai target group'
           #application: 'retail'
           #environment: '{{ env }}'
@@ -53,7 +53,7 @@
     - name: Create a load balancer for ecs target group
       when: '(ecs_lb.load_balancers| length == 0)'
       elb_application_lb:
-        name: '{{ app_name }}-ecs-lb'
+        name: '{{ application.app_name }}-ecs-lb'
         security_groups: '{{ security_group_id }}'
         subnets:
           - "{{ subnet_id_1 }}"
@@ -73,40 +73,40 @@
       tags: create_td
       ecs_taskdefinition:
         state: present
-        family: '{{ app_name }}'
+        family: '{{ application.app_name }}'
         network_mode: bridge
         force_create: true
         #execution_role_arn: 'arn:aws:iam::522246307890:role/ecsInstanceRole'
         containers:
-          - name: '{{ app_name }}-container'
+          - name: '{{ application.app_name }}-container'
             essential: true
-            image: '{{ app_image }}'
-            cpu: "{{task_cpu}}"
-            memory: "{{task_memory}}"
+            image: '{{ application.app_image }}'
+            cpu: "{{application.task_cpu}}"
+            memory: "{{application.task_memory}}"
             environment:
-              - name: "{{host_name}}"
-                value: "{{host}}"
+              - name: "{{application.host_name}}"
+                value: "{{application.host}}"
             portMappings:
-              - containerPort: '{{ container_port }}'
-                hostPort: '{{ host_port }}'
+              - containerPort: '{{ application.container_port }}'
+                hostPort: '{{ application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{container_path}}'
-                sourceVolume: '{{volume_name}}'
+              - containerPath: '{{application.container_path}}'
+                sourceVolume: '{{application.volume_name}}'
         volumes: 
-          - name: '{{volume_name}}'
+          - name: '{{application.volume_name}}'
             host:
-              sourcePath: '{{source_path}}'
+              sourcePath: '{{application.source_path}}'
       register: td
     - debug: var=td verbosity=2
     
     
     # Create a service using the task definition to be run under our ECS cluster
-    - name: 'Create ECS Service for app - {{ app_name }} on ECS cluster - {{ cluster_name }}'
+    - name: 'Create ECS Service for app - {{ application.app_name }} on ECS cluster - {{ cluster_name }}'
       tags: create_ecs_svc
       ecs_service:
         state: present
-        name: '{{ app_name }}'
+        name: '{{ application.app_name }}'
         launch_type: EC2
         force_new_deployment: yes
         cluster: '{{ cluster_name }}'
@@ -121,7 +121,7 @@
           maximum_percent: '{{maximum_percent}}'
         load_balancers:
           - targetGroupArn: '{{ ecs_tg.target_groups[0].target_group_arn if (ecs_tg.target_groups|length > 0) else ecs_tg_new.target_group_arn }}'
-            containerName: '{{ app_name }}-container'
+            containerName: '{{ application.app_name }}-container'
             containerPort: '{{ container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
