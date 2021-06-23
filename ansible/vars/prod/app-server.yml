@@ -13,7 +13,7 @@ applications:
     container_path: 
 
 
-  app:
+  morfeusadmin:
     app_name: active-ai
     app_image: nginx:latest
     container_port: 80
@@ -27,7 +27,7 @@ applications:
     container_path: /nginx-volume
 
 
-  app:
+  morfeus-prod:
     app_name: chatbot-Ai
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
     container_port: 80
