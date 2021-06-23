@@ -14,7 +14,7 @@ applications:
 
 
   morfeusadmin:
-    app_name: chatbot-Ai
+    app_name: active-ai
     app_image: nginx:latest
     container_port: 80
     host_port: 0
