@@ -125,4 +125,5 @@
             containerPort: '{{ container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
+    
 
