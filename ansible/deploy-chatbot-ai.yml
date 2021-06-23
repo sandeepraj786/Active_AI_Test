@@ -6,6 +6,11 @@
     - "vars/{{ env }}/variables.yml"
     - "vars/{{ env }}/app-server.yml"
   tasks:
+    - name: Initialize
+      tags: Initialize the app properties and defaults
+      set_fact:
+         application: "{{ applications[app] }}"
+         defaults: "{{ applications['defaults'] }}"
     #Gather facts related to target group
     - name: Gather facts related to target group
       elb_target_group_info:
