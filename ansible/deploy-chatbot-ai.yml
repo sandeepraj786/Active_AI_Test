@@ -100,7 +100,7 @@
                 sourceVolume: '{{application.volume_name1}}'
               - containerPath: '{{application.container_path2}}'
                 sourceVolume: '{{application.volume_name2}}'
-                when: application.volume2 | length > 0  and application.volume2 |lenth > 0
+                when: application.container_path2 | length > 0  and application.volume2 |lenth > 0
         volumes: 
           - name: '{{application.volume_name1}}'
             host:
