@@ -10,7 +10,7 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
-         defaults: "{{ applications['defaults'] }}"
+        # defaults: "{{ applications['defaults'] }}"
     #Gather facts related to target group
     - name: Gather facts related to target group
       elb_target_group_info:
