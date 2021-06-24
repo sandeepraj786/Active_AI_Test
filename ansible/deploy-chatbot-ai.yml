@@ -100,16 +100,13 @@
                 sourceVolume: '{{application.volume_name1}}'
               - containerPath: '{{application.container_path2}}'
                 sourceVolume: '{{application.volume_name2}}'
-                when: application.container_path2 | length > 0  and application.volume2 |lenth > 0
         volumes: 
           - name: '{{application.volume_name1}}'
             host:
               sourcePath: '{{application.source_path1}}'
           - name: '{{application.volume_name2}}'
-           
             host:
               sourcePath: '{{application.source_path2}}' 
-              when: application.volume_name2 | length > 0 and application.source_path2 > 0
       register: td
     - debug: var=td verbosity=2
     
