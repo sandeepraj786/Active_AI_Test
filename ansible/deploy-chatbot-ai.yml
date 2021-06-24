@@ -100,13 +100,16 @@
                 sourceVolume: '{{application.volume_name1}}'
               - containerPath: '{{application.container_path2}}'
                 sourceVolume: '{{application.volume_name2}}'
+                when: application.volume2 is defined and application.volume2 is  defined
         volumes: 
           - name: '{{application.volume_name1}}'
             host:
               sourcePath: '{{application.source_path1}}'
           - name: '{{application.volume_name2}}'
+            when: application.volume_name2 is defined
             host:
-              sourcePath: '{{application.source_path2}}'    
+              sourcePath: '{{application.source_path2}}' 
+              when: application.source_path2 is defined
       register: td
     - debug: var=td verbosity=2
     
