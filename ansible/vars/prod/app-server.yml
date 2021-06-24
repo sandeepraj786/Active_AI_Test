@@ -11,9 +11,9 @@ applications:
     volume_name1: nginx-volume
     source_path1: /var/log/nginx-volume
     container_path1: /nginx-volume
-    volume_name2: null
-    source_path2: null
-    container_path2: null
+    volume_name2: ""
+    source_path2: ""
+    container_path2: ""  
     
   morfeus-prod:
     app_name: chatbot
