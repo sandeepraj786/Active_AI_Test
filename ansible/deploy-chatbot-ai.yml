@@ -9,8 +9,8 @@
     - name: Initialize
       tags: Initialize the app properties and defaults
       set_fact:
-         application: "{{ applications[morfeusadmin] }}"
-         #defaults: "{{ applications['defaults'] }}"
+         application: "{{ applications[app] }}"
+         defaults: "{{ applications['defaults'] }}"
     #Gather facts related to target group
     - name: Gather facts related to target group
       elb_target_group_info:
