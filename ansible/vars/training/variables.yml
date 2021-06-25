@@ -4,7 +4,7 @@ cluster_name: AI-training
 
 #Container details
 alb_listener_port: 80
-tg_port: "{{ container_port }}"
+tg_port: 80
 tg_unhealthy_threshold_count: 2
 tg_healthy_threshold_count: 2
 tg_health_check_timeout: 120
