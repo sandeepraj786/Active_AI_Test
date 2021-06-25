@@ -10,7 +10,7 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
-        # defaults: "{{ applications['defaults'] }}"
+        
     #Gather facts related to target group
     - name: Gather facts related to target group
       elb_target_group_info:
@@ -48,9 +48,6 @@
         state: present
         tags:
           Name: '{{ application.app_name }}-ecs-tg'
-          #description: 'Active-ai target group'
-          #application: 'retail'
-          #environment: '{{ env }}'
       register: ecs_tg_new
     - debug: var=ecs_tg_new verbosity=2
 
@@ -81,7 +78,7 @@
         family: '{{ application.app_name }}'
         network_mode: bridge
         force_create: true
-        #execution_role_arn: 'arn:aws:iam::522246307890:role/ecsInstanceRole'
+        #execution_role_arn: 
         containers:
           - name: '{{ application.app_name }}-container'
             essential: true
@@ -96,17 +93,15 @@
                 hostPort: '{{ application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{application.container_path1}}'
-                sourceVolume: '{{application.volume_name1}}'
-              - containerPath: '{{application.container_path2}}'
-                sourceVolume: '{{application.volume_name2}}'
+              - containerPath: '{{application.container_path}}'
+                sourceVolume: '{{application.volume_name}}'
         volumes: 
-          - name: '{{application.volume_name1}}'
+          - name: '{{application.volume_name}}'
             host:
-              sourcePath: '{{application.source_path1}}'
-          - name: '{{application.volume_name2}}'
+              sourcePath: '{{application.source_path}}'
+          - name: '{{application.volume_name}}'
             host:
-              sourcePath: '{{application.source_path2}}' 
+              sourcePath: '{{application.source_path}}' 
       register: td
     - debug: var=td verbosity=2
     
@@ -122,7 +117,7 @@
         cluster: '{{ cluster_name }}'
         task_definition: '{{ td.taskdefinition.family }}:{{ td.taskdefinition.revision }}'
         desired_count: 1
-        # role: 'arn:aws:iam::522246307890:role/ecsServiceRole'
+        # role: 
         placement_strategy:
           - type: spread
             field: attribute:ecs.availability-zone

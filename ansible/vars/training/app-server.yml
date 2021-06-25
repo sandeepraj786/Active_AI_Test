@@ -1,0 +1,44 @@
+applications:
+  
+  sniper-master:
+    app_name: spiner-master
+    app_image: nginx:latest
+    container_port: 80
+    host_port: 0
+    task_cpu: 128
+    task_memory: 1024
+    host_name: webserver
+    host: http://18.220.64.40:80
+    volume_name: nginx-volume
+    source_path: /var/log/nginx-volume
+    container_path: /nginx-volume
+    
+   
+   
+
+  triniti-mstr:
+    app_name: spiner-mstr
+    app_image: nginx:latest
+    container_port: 80
+    host_port: 0
+    task_cpu: 128
+    task_memory: 1024
+    host_name: webserver
+    host: http://18.220.64.40:80
+    volume_name: nginx-volume
+    source_path: /var/log/nginx-volume
+    container_path: /nginx-volume
+    
+  
+  manager:
+    name: "manager-prod-0-5"
+    image: "940330296631.dkr.ecr.ap-southeast-1.amazonaws.com/instarem"
+    tag: onprem.5
+    health_check_url: "/"
+    context_path_pattern: "/v/1"
+    memory_hard_limit: 128
+    container_port: 8090
+    container_path: /var/log/supervisor
+    volume_name: manager
+    source_path: /var/log/supervisor
+    ecs_service_name: manager-prod-0-5

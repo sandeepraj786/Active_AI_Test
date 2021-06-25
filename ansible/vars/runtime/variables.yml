@@ -1,10 +1,10 @@
 #VPC Details
 vpc_id: "vpc-95ed50fe"
-cluster_name: Active-AI-Test
+cluster_name: AI-runtime
 
 #Container details
 alb_listener_port: 80
-tg_port: "{{ container_port }}"
+tg_port: 80
 tg_unhealthy_threshold_count: 2
 tg_healthy_threshold_count: 2
 tg_health_check_timeout: 120
