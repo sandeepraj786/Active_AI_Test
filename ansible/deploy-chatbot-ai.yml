@@ -99,9 +99,6 @@
           - name: '{{application.volume_name}}'
             host:
               sourcePath: '{{application.source_path}}'
-          - name: '{{application.volume_name}}'
-            host:
-              sourcePath: '{{application.source_path}}' 
       register: td
     - debug: var=td verbosity=2
     
