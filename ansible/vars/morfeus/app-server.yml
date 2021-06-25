@@ -8,9 +8,13 @@ applications:
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
+    volume_name1: nginx-volume
+    source_path1: /var/log/nginx-volume
+    container_path1: /nginx-volume
+    volume_name2: superviser
+    source_path2: /var/log/superviser
+    container_path2: /superviser
+
 
 
   morfeus-prod:
@@ -22,13 +26,9 @@ applications:
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
-
-
-
-
-
-
-
+    volume_name1: nginx-volume
+    source_path1: /var/log/nginx-volume
+    container_path1: /nginx-volume
+     volume_name2: superviser
+    source_path2: /var/log/superviser
+    container_path2: /superviser

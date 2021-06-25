@@ -93,15 +93,17 @@
                 hostPort: '{{ application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{application.container_path}}'
-                sourceVolume: '{{application.volume_name}}'
+              - containerPath: '{{application.container_path1}}'
+                sourceVolume: '{{application.volume_name1}}'
+              - containerPath: '{{application.container_path2}}'
+                sourceVolume: '{{application.volume_name2}}'  
         volumes: 
-          - name: '{{application.volume_name}}'
+          - name: '{{application.volume_name1}}'
             host:
-              sourcePath: '{{application.source_path}}'
-          - name: '{{application.volume_name}}'
+              sourcePath: '{{application.source_path1}}'
+          - name: '{{application.volume_name2}}'
             host:
-              sourcePath: '{{application.source_path}}' 
+              sourcePath: '{{application.source_path2}}' 
       register: td
     - debug: var=td verbosity=2
     
