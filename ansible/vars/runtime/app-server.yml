@@ -1,6 +1,6 @@
 applications:
  
-  sniper-worker:
+  #sniper-worker:
     app_name: spiner-worker
     app_image: nginx:latest
     container_port: 80
