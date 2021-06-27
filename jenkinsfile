@@ -13,7 +13,7 @@ pipeline {
 	    
             stage('Run Ansible playbook') {
                steps {
-	               sh "ansible-playbook /var/lib/jenkins/workspace/Chatbot-Active-Ai-job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name'"
+	               sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name'"
                      
 	             
          }
