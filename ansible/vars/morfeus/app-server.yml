@@ -13,7 +13,7 @@ applications:
     container_path: /nginx-volume
 
 
-  morfeus-prod:
+  #morfeus-prod:
     app_name: morfeus-prod
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
     container_port: 80
