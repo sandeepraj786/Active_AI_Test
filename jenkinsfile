@@ -1,16 +1,6 @@
 pipeline {
     agent any
     stages {
-	  #  stage('SCM Checkout'){
-            # steps{    
-		#    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
-		 #}
-	   # }
-	   
-	   
-	    
-	    
-	    
             stage('Run Ansible playbook') {
                steps {
 	               sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name'"
