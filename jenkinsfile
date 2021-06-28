@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-	    stage('SCM Checkout'){
-             steps{    
-		    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
-		 }
-	    }
+	  #  stage('SCM Checkout'){
+            # steps{    
+		#    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
+		 #}
+	   # }
 	   
 	   
 	    
