@@ -1,6 +1,6 @@
 #VPC Details
 vpc_id: "vpc-7239a319"
-cluster_name: AI-morfeus
+cluster_name: AI-Morfeus-UAT
 
 #Container details
 alb_listener_port: 80
