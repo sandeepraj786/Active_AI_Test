@@ -2,6 +2,7 @@ applications:
   morfeusadmin:
     app_name: morfeusadmin
     app_image: nginx:latest
+    task_definition_name: morfeus-admin
     container_port: 80
     host_port: 0
     task_cpu: 128
@@ -16,6 +17,7 @@ applications:
   morfeus-app:
     app_name: morfeus-app-3-3-1
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
+    task_definition_name: morfeus
     container_port: 80
     memory_hard_limit: 4096
     host_port: 0
