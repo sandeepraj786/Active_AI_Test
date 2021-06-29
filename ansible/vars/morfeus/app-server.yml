@@ -1,7 +1,7 @@
 applications:
   morfeusadmin:
     app_name: morfeusadmin
-    app_image: {image}
+    app_image: nginx:latest
     container_port: 80
     host_port: 0
     task_cpu: 128
