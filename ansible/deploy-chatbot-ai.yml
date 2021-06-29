@@ -75,7 +75,7 @@
       tags: create_td
       ecs_taskdefinition:
         state: present
-        family: '{{ app }}'
+        family: '{{ application.task_definition_name }}'
         network_mode: bridge
         force_create: true
         #execution_role_arn: 
