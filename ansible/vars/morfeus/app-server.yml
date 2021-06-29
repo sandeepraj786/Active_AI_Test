@@ -17,6 +17,7 @@ applications:
     app_name: morfeus-app-3-3-1
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
     container_port: 80
+    memory_hard_limit: 4096
     host_port: 0
     task_cpu: 128
     task_memory: 1024
