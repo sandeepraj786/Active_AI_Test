@@ -108,7 +108,7 @@
       tags: create_ecs_svc
       ecs_service:
         state: present
-        name: '{{ application.app_name }}'
+        name: '{{ app }}'
         launch_type: EC2
         force_new_deployment: yes
         cluster: '{{ cluster_name }}'
