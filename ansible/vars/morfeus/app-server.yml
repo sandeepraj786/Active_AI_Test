@@ -1,7 +1,7 @@
 applications:
   morfeusadmin:
     app_name: morfeusadmin
-    app_image: nginx:latest
+    app_image: 
     task_definition_name: morfeus-admin
     memory_hard_limit: 4096
     container_port: 80
