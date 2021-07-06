@@ -10,8 +10,9 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
-        
+           
     #Gather facts related to target group
+      when: app =="morfeusadmin"
     - name: Gather facts related to target group
       elb_target_group_info:
         names:
@@ -19,7 +20,7 @@
         region: 'us-east-2'
       register: ecs_tg
     - debug: var=ecs_tg verbosity=2
-      when: app =="morfeusadmin"
+     
 
     #Gather facts related to load-balancer
     - name: Gather facts related to load balancer
