@@ -12,7 +12,6 @@
          application: "{{ applications[app] }}"
         
     #Gather facts related to target group
-      when: application == "morfeusadmin"
     - name: Gather facts related to target group
       elb_target_group_info:
         names:
@@ -20,6 +19,7 @@
         region: 'us-east-2'
       register: ecs_tg
     - debug: var=ecs_tg verbosity=2
+      when: application =="morfeusadmin"
 
     #Gather facts related to load-balancer
     - name: Gather facts related to load balancer
@@ -28,6 +28,7 @@
           - '{{ app }}-ecs-lb'
       register: ecs_lb
     - debug: var=ecs_lb verbosity=2
+      when: application =="morfeusadmin"
 
     #Create a Target group for the above ALB
     - name: Create target group for ALB to manage traffic to ECS cluster
@@ -51,6 +52,7 @@
           Name: '{{ app }}-ecs-tg'
       register: ecs_tg_new
     - debug: var=ecs_tg_new verbosity=2
+      when: application =="morfeusadmin"
 
     #Create a load balancer for ecs target group
     - name: Create a load balancer for ecs target group
@@ -70,6 +72,7 @@
         state: present
       register: ecs_lb_new
     - debug: var=ecs_lb_new verbosity=2
+      when: application =="morfeusadmin"
 
     #Create a Task definition for our container
     - name: Create a task definition for ecs
@@ -103,6 +106,7 @@
               sourcePath: '{{application.source_path}}'
       register: td
     - debug: var=td verbosity=2
+      when: application =="morfeusadmin"
     
     
     # Create a service using the task definition to be run under our ECS cluster
@@ -129,5 +133,5 @@
             containerPort: '{{ application.container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
-    
+      when: application =="morfeusadmin"
 
