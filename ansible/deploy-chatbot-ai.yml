@@ -12,8 +12,9 @@
          application: "{{ applications[app] }}"
            
     #Gather facts related to target group
-      when: app =="morfeusadmin"
+     
     - name: Gather facts related to target group
+      when: app =="morfeusadmin"
       elb_target_group_info:
         names:
           - '{{ app }}-ecs-tg'
