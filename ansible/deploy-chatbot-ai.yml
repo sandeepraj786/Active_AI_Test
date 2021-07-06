@@ -19,7 +19,7 @@
         region: 'us-east-2'
       register: ecs_tg
     - debug: var=ecs_tg verbosity=2
-      when: application =="morfeusadmin"
+      when: app =="morfeusadmin"
 
     #Gather facts related to load-balancer
     - name: Gather facts related to load balancer
