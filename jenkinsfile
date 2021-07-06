@@ -6,13 +6,13 @@ pipeline {
 		   git 'https://github.com/sandeepraj786/Active_AI_Test.git'
 		 }
 	    }
-      stage{
+      
          parameters {
            choice(name: 'App_Name', choices: ['morfeus','runtime','training'], description: '')
            choice(name: 'Service_Name', choices: ['morfeusadmin','morfeus-app','sniper-worker','triniti-worker'], description: '')
     }
 
-      }
+      
       
 	   
 	    
