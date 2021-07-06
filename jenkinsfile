@@ -6,15 +6,23 @@ pipeline {
 		    git 'https://github.com/sandeepraj786/Active_AI_Test.git'
 		 }
 	    }
+
+        parameters {
+        choice(name: 'App_Name', choices: ['morfeus','runtime','training'], description: '')
+        choice(name: 'Service_Name', choices: ['morfeusadmin','morfeus-app','sniper-worker','triniti-worker'], description: '')
+    }
 	   
-	   
-	    
 	    
 	    
             stage('Run Ansible playbook') {
                steps {
-	               if App_Name == "morfeusadmin"
-	               sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name ${app_image}'"
+	               if (env.App_Name =="morfeus" & app.Service_Name="morfeusadmin"){
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
+
+                  }else{
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot2-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
+
+                  }
                      
 	             
          }
