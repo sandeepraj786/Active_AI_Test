@@ -9,11 +9,12 @@ applications:
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
-    
-    
+    volume_name1: spiner
+    source_path1: /sniper
+    container_path1: /opt/tornado/data/faq_index
+    volume_name2: spiner-logs
+    source_path2: /var/log/supervisor
+    container_path2: /var/log/supervisor
   triniti-worker:
     app_name: triniti-worker
     app_image: nginx:latest

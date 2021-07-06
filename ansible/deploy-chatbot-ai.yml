@@ -10,29 +10,34 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
-        
+           
     #Gather facts related to target group
+     
     - name: Gather facts related to target group
+      when: app =="morfeusadmin"
       elb_target_group_info:
         names:
-          - '{{ application.app_name }}-ecs-tg'
+          - '{{ app }}-ecs-tg'
         region: 'us-east-2'
       register: ecs_tg
     - debug: var=ecs_tg verbosity=2
+     
 
     #Gather facts related to load-balancer
+      when: app =="morfeusadmin"
     - name: Gather facts related to load balancer
       elb_application_lb_info:
         names:
-          - '{{ application.app_name }}-ecs-lb'
+          - '{{ app }}-ecs-lb'
       register: ecs_lb
     - debug: var=ecs_lb verbosity=2
-
+      
     #Create a Target group for the above ALB
+      when: app =="morfeusadmin"
     - name: Create target group for ALB to manage traffic to ECS cluster
       when: '(ecs_tg.target_groups| length == 0)'
       elb_target_group:
-        name: '{{ application.app_name }}-ecs-tg'
+        name: '{{ app}}-ecs-tg'
         vpc_id: '{{ vpc_id }}'
         target_type: instance
         protocol: HTTP
@@ -47,15 +52,17 @@
         successful_response_codes: '{{tg_successful_response_codes}}'
         state: present
         tags:
-          Name: '{{ application.app_name }}-ecs-tg'
+          Name: '{{ app }}-ecs-tg'
       register: ecs_tg_new
     - debug: var=ecs_tg_new verbosity=2
 
+
     #Create a load balancer for ecs target group
+      when: app =="morfeusadmin"
     - name: Create a load balancer for ecs target group
       when: '(ecs_lb.load_balancers| length == 0)'
       elb_application_lb:
-        name: '{{ application.app_name }}-ecs-lb'
+        name: '{{ app }}-ecs-lb'
         security_groups: '{{ security_group_id }}'
         subnets:
           - "{{ subnet_id_1 }}"
@@ -69,9 +76,45 @@
         state: present
       register: ecs_lb_new
     - debug: var=ecs_lb_new verbosity=2
-
+      
     #Create a Task definition for our container
+      when: app =="morfeusadmin"
     - name: Create a task definition for ecs
+      tags: create_td
+      ecs_taskdefinition:
+        state: present
+        family: '{{ application.task_definition_name }}'
+        network_mode: bridge
+        force_create: true
+        #execution_role_arn: 
+        containers:
+          - name: '{{ application.app_name }}'
+            essential: true
+            image: '{{ application.app_image }}'
+            memory: "{{ application.memory_hard_limit}}"
+            cpu: "{{application.task_cpu}}"
+           # memory: "{{application.task_memory}}"
+            environment:
+              - name: "{{application.host_name}}"
+                value: "{{application.host}}"
+            portMappings:
+              - containerPort: '{{ application.container_port }}'
+                hostPort: '{{ application.host_port }}'
+                protocol: 'tcp'
+            mountPoints:
+              - containerPath: '{{application.container_path}}'
+                sourceVolume: '{{application.volume_name}}'
+        volumes: 
+          - name: '{{application.volume_name}}'
+            host:
+              sourcePath: '{{application.source_path}}'
+      register: td
+    - debug: var=td verbosity=2
+      
+      
+       #Create a Task definition for our container
+    - name: Create a task definition for ecs
+      when: app == "sniper-worker"
       tags: create_td
       ecs_taskdefinition:
         state: present
@@ -93,22 +136,27 @@
                 hostPort: '{{ application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{application.container_path}}'
-                sourceVolume: '{{application.volume_name}}'
+              - containerPath: '{{application.container_path1}}'
+                sourceVolume: '{{application.volume_name1}}'
+              - containerPath: '{{application.container_path2}}'
+                sourceVolume: '{{application.volume_name2}}'  
         volumes: 
-          - name: '{{application.volume_name}}'
+          - name: '{{application.volume_name1}}'
             host:
-              sourcePath: '{{application.source_path}}'
+              sourcePath: '{{application.source_path1}}'
+          - name: '{{application.volume_name2}}'
+            host:
+              sourcePath: '{{application.source_path2}}' 
       register: td
-    - debug: var=td verbosity=2
-    
+    - debug: var=td verbosity=2 
     
     # Create a service using the task definition to be run under our ECS cluster
+      when: app =="morfeusadmin"
     - name: 'Create ECS Service for app - {{ application.app_name }} on ECS cluster - {{ cluster_name }}'
       tags: create_ecs_svc
       ecs_service:
         state: present
-        name: '{{ application.app_name }}'
+        name: '{{ app }}'
         launch_type: EC2
         force_new_deployment: yes
         cluster: '{{ cluster_name }}'
@@ -123,9 +171,10 @@
           maximum_percent: '{{maximum_percent}}'
         load_balancers:
           - targetGroupArn: '{{ ecs_tg.target_groups[0].target_group_arn if (ecs_tg.target_groups|length > 0) else ecs_tg_new.target_group_arn }}'
-            containerName: '{{ application.app_name }}-container'
+            containerName: '{{ application.app_name }}'
             containerPort: '{{ application.container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
-    
+      
+      
 
