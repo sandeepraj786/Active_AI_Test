@@ -28,7 +28,7 @@ pipeline {
       stage('Run Ansible playbook') {
                steps {
 	         script{
-	               if (env.App_Name =="morfeus" && app.Service_Name=="morfeusadmin"){
+	               if (App_Name =="morfeus" && Service_Name=="morfeusadmin"){
                      sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
 
                   }else{
