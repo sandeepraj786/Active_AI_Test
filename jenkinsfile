@@ -13,6 +13,7 @@ pipeline {
                  parameters ([
                     choice(name: 'App_Name', choices: ['morfeus','runtime','training'], description: ''),
                     choice(name: 'Service_Name', choices: ['morfeusadmin','morfeus-app','sniper-worker','triniti-worker'], description: ''),
+		    choice(name: 'AWS_ECR_ID', choices: ['330741986720', '439962001458'], description: ''),
 
                  ])
                
