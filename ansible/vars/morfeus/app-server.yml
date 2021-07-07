@@ -1,7 +1,7 @@
 applications:
   morfeusadmin:
     app_name: morfeusadmin
-    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:{{env}}-latest
+    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:{{image}}-latest
     task_definition_name: morfeus-admin
     memory_hard_limit: 4096
     container_port: 80
