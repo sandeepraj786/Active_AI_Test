@@ -10,6 +10,7 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
+         defaults: "{{ applications['defaults'] }}"
            
     #Gather facts related to target group
      
@@ -97,12 +98,12 @@
                 hostPort: '{{ application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{application.container_path}}'
-                sourceVolume: '{{application.volume_name}}'
+              - containerPath: '{{application.container_path | default(defaults.container_path) }}"
+                sourceVolume: '{{application.volume_name | | default(defaults.volume_name) }}"
         volumes: 
-          - name: '{{application.volume_name}}'
+          - name: '{{application.volume_name  | default(defaults.volume_name)}}'
             host:
-              sourcePath: '{{application.source_path}}'
+              sourcePath: '{{application.source_path | default(defaults.source_path)}}'
       register: td
     - debug: var=td verbosity=2
     
