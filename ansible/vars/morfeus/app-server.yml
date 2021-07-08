@@ -27,9 +27,8 @@ applications:
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: 
-    source_path: 
-    container_path: 
+  
+  
 
 
   morfeus-app:
