@@ -33,7 +33,7 @@ pipeline {
                      sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
 
                   }else{
-                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot2-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot2-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name  image=${AWS_ECR_ID} '"
 
                   }
 		 } 
