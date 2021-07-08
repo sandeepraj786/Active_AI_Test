@@ -20,7 +20,7 @@ applications:
     host:
   morfeusadmin:
     app_name: morfeusadmin
-    app_image: {{image}}:latest
+    app_image: {{image}}-latest
     task_definition_name: morfeus-admin
     memory_hard_limit: 4096
     container_port: 80
