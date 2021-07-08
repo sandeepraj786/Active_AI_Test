@@ -42,15 +42,19 @@ applications:
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
     task_definition_name: morfeus
     container_port: 80
-    memory_hard_limit: 4096
+    #memory_hard_limit: 4096
     host_port: 0
     task_cpu: 128
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
+    volume_name1: nginx-volume
+    source_path1: /var/log/nginx-volume
+    container_path1: /nginx-volume
+    volume_name2: nginx-volumes
+    source_path2: /var/log/nginx-volumes
+    container_path2: /nginx-volumes
+
 
 
 
