@@ -87,8 +87,6 @@
           - name: '{{ application.app_name }}'
             essential: true
             image: '{{ application.app_image }}'
-            memory: "{{ application.memory_hard_limit}}"
-            memoryReservation: "{{ application.app_memory_soft_limit }}"
             cpu: "{{application.task_cpu}}"
             memory: "{{application.task_memory}}"
             environment:
