@@ -99,7 +99,7 @@
                 protocol: 'tcp'
             mountPoints:
               - containerPath: '{{application.container_path | default(defaults.container_path) }}'
-                sourceVolume: '{{application.volume_name | | default(defaults.volume_name) }}'
+                sourceVolume: '{{application.volume_name |  default(defaults.volume_name) }}'
         volumes: 
           - name: '{{application.volume_name  | default(defaults.volume_name)}}'
             host:
