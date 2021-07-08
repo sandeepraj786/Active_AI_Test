@@ -22,6 +22,7 @@ applications:
     app_name: morfeusadmin
     app_image: "{{image}}"
     task_definition_name: morfeus-admin
+    memory_soft_limit: 128
     memory_hard_limit: 4096
     container_port: 80
     host_port: 0
