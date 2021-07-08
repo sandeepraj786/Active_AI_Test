@@ -89,7 +89,8 @@
             image: '{{ application.app_image }}'
             memory: "{{ application.memory_hard_limit}}"
             cpu: "{{application.task_cpu}}"
-           # memory: "{{application.task_memory}}"
+            memory: "{{application.task_memory}}"
+            memory: "{{application.memory_soft_limit}}"
             environment:
               - name: "{{application.host_name | default(defaults.host_name)}}"
                 value: "{{application.host | default(defaults.host)}}"
