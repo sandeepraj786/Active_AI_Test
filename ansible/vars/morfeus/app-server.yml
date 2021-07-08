@@ -39,8 +39,8 @@ applications:
 
   morfeus-app:
     app_name: morfeus-app-3-3-1
-    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
-    task_definition_name: morfeus
+    app_image: "{{image}}"
+    #task_definition_name: morfeus
     container_port: 80
     #memory_hard_limit: 4096
     host_port: 0
