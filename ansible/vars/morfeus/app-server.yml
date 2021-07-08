@@ -1,4 +1,21 @@
 applications:
+  defaults:
+    name:
+    image:
+    tag:
+    container_port: 
+    tg_unhealthy_threshold_count: 2
+    tg_healthy_threshold_count: 5
+    tg_health_check_timeout: 5
+    tg_health_check_interval: 30
+    memory_soft_limit:
+    memory_hard_limit:
+    container_path:
+    volume_name: 
+    source_path:
+    ecs_service_name: 
+    alb_priority: 
+    cpu_limit:
   morfeusadmin:
     app_name: morfeusadmin
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:{{image}}-latest
@@ -10,9 +27,9 @@ applications:
     task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
+    volume_name: 
+    source_path: 
+    container_path: 
 
 
   morfeus-app:
