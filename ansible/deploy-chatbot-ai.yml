@@ -90,8 +90,7 @@
             memory: "{{ application.memory_hard_limit}}"
             memoryReservation: "{{ application.app_memory_soft_limit }}"
             cpu: "{{application.task_cpu}}"
-            #memory: "{{application.task_memory}}"
-           # memory: "{{application.memory_soft_limit}}"
+            memory: "{{application.task_memory}}"
             environment:
               - name: "{{application.host_name | default(defaults.host_name)}}"
                 value: "{{application.host | default(defaults.host)}}"
