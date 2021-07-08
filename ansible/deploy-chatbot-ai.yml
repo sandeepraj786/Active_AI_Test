@@ -91,8 +91,8 @@
             cpu: "{{application.task_cpu}}"
            # memory: "{{application.task_memory}}"
             environment:
-              - name: "{{application.host_name | default(defaults.host_name}}"
-                value: "{{application.host | default(defaults.host}}"
+              - name: "{{application.host_name | default(defaults.host_name)}}"
+                value: "{{application.host | default(defaults.host)}}"
             portMappings:
               - containerPort: '{{ application.container_port }}'
                 hostPort: '{{ application.host_port }}'
