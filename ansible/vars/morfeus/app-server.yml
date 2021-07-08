@@ -22,12 +22,10 @@ applications:
     app_name: morfeusadmin
     app_image: "{{image}}"
     task_definition_name: morfeus-admin
-    app_memory_soft_limit: 1024
-    memory_hard_limit: 1024
     container_port: 80
     host_port: 0
-    task_cpu: 2048
-    #task_memory: 1024
+    task_cpu: 128
+    task_memory: 1024
     host_name: webserver
     host: http://18.220.64.40:80
     volume_name: nginx-volume
@@ -42,7 +40,6 @@ applications:
     app_image: "{{image}}"
     #task_definition_name: morfeus
     container_port: 80
-    #memory_hard_limit: 4096
     host_port: 0
     task_cpu: 128
     task_memory: 1024
