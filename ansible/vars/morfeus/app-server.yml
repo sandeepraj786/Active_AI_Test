@@ -16,6 +16,8 @@ applications:
     ecs_service_name: 
     alb_priority: 
     cpu_limit:
+    host_name:
+    host:
   morfeusadmin:
     app_name: morfeusadmin
     app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
@@ -25,9 +27,12 @@ applications:
     host_port: 0
     task_cpu: 128
     task_memory: 1024
-    host_name: webserver
-    host: http://18.220.64.40:80
-  
+    #host_name: webserver
+    #host: http://18.220.64.40:80
+    volume_name: nginx-volume
+    source_path: /var/log/nginx-volume
+    container_path: /nginx-volume
+
   
 
 
