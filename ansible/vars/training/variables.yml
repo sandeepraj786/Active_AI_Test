@@ -1,6 +1,6 @@
 #VPC Details
-vpc_id: "vpc-95ed50fe"
-cluster_name: AI-training
+vpc_id: "vpc-7239a319"
+cluster_name: AI-runtime
 
 #Container details
 alb_listener_port: 80
@@ -12,10 +12,9 @@ tg_health_check_interval: 300
 tg_health_check_path: /
 tg_successful_response_codes: 200
 
-security_group_id: sg-002d0a85d94299b69
-subnet_id_1: subnet-7ec6d504
-subnet_id_2: subnet-a2a005c9
-
+security_group_id: sg-071dc5d5d9dec060b
+subnet_id_1: subnet-9b37b5f0
+subnet_id_2: subnet-53e8cb1f
 
 minimum_healthy_percent: 100
 maximum_percent: 200
