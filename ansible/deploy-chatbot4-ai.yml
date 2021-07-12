@@ -64,9 +64,5 @@
         deployment_configuration:
           minimum_healthy_percent: '{{minimum_healthy_percent}}'
           maximum_percent: '{{maximum_percent}}'
-        load_balancers:
-          - targetGroupArn: '{{ ecs_tg.target_groups[0].target_group_arn if (ecs_tg.target_groups|length > 0) else ecs_tg_new.target_group_arn }}'
-            containerName: '{{ application.app_name }}'
-            containerPort: '{{ application.container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
