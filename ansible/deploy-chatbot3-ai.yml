@@ -11,64 +11,6 @@
       set_fact:
          application: "{{ applications[app] }}"
 
-    #Gather facts related to target group
-    - name: Gather facts related to target group
-      elb_target_group_info:
-        names:
-          - '{{ app}}-ecs-tg'
-        region: 'us-east-2'
-      register: ecs_tg
-    - debug: var=ecs_tg verbosity=2
-
-    #Gather facts related to load-balancer
-    - name: Gather facts related to load balancer
-      elb_application_lb_info:
-        names:
-          - '{{ app }}-ecs-lb'
-      register: ecs_lb
-    - debug: var=ecs_lb verbosity=2
-
-    #Create a Target group for the above ALB
-    - name: Create target group for ALB to manage traffic to ECS cluster
-      when: '(ecs_tg.target_groups| length == 0)'
-      elb_target_group:
-        name: '{{ app}}-ecs-tg'
-        vpc_id: '{{ vpc_id }}'
-        target_type: instance
-        protocol: HTTP
-        port: '{{ tg_port }}'
-        health_check_path: '{{ tg_health_check_path }}'
-        health_check_port: traffic-port
-        health_check_protocol: http
-        unhealthy_threshold_count: '{{ tg_unhealthy_threshold_count }}'
-        healthy_threshold_count: '{{ tg_healthy_threshold_count }}'
-        health_check_timeout: '{{ tg_health_check_timeout }}'
-        health_check_interval: '{{ tg_health_check_interval }}'
-        successful_response_codes: '{{tg_successful_response_codes}}'
-        state: present
-        tags:
-          Name: '{{ app}}-ecs-tg'
-      register: ecs_tg_new
-    - debug: var=ecs_tg_new verbosity=2
-
-    #Create a load balancer for ecs target group
-    - name: Create a load balancer for ecs target group
-      when: '(ecs_lb.load_balancers| length == 0)'
-      elb_application_lb:
-        name: '{{ app }}-ecs-lb'
-        security_groups: '{{ security_group_id }}'
-        subnets:
-          - "{{ subnet_id_1 }}"
-          - "{{ subnet_id_2 }}"
-        listeners:
-          - Protocol: HTTP
-            Port: '{{alb_listener_port}}'
-            DefaultActions:
-              - Type: forward
-                TargetGroupName: "{{ ecs_tg.target_groups[0].target_group_name if (ecs_tg.target_groups|length > 0) else ecs_tg_new.target_group_name}}"
-        state: present
-      register: ecs_lb_new
-    - debug: var=ecs_lb_new verbosity=2
 
     #Create a Task definition for our container
     - name: Create a task definition for ecs
@@ -124,5 +66,3 @@
             containerPort: '{{ application.container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
-      
-

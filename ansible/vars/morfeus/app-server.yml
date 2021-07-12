@@ -1,34 +1,35 @@
-applications:
-  morfeusadmin:
-    app_name: morfeusadmin
-    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:{{env}}-latest
-    task_definition_name: morfeus-admin
-    memory_hard_limit: 4096
+ applications:
+ 
+  triniti-3-3-1:
+    app_name: triniti-3-3-1
+    app_image: "{{image}}"
+    task_definition_name: ai-runtime-server
+    memory_hard_limit: 10240
     container_port: 80
-    host_port: 0
-    task_cpu: 128
-    task_memory: 1024
+    host_port: 80
+    host_name: TRINITI_SPOTTER_END_POINT
+    host: http://172.16.5.190:9000/v/1/spotter/process
+    volume_name: superviser
+    source_path: /var/log/supervisor
+    container_path: /var/log/supervisor
+    
+    
+  sniper-worker:
+    app_name: spiner-worker
+    app_image: "{{image}}"
+    task_definition_name: sniper-worker
+    memory_hard_limit: 10240
+    container_port: 8888
+    host_port: 9000
     host_name: webserver
     host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
-
-
-  morfeus-app:
-    app_name: morfeus-app-3-3-1
-    app_image: 769585693008.dkr.ecr.us-east-2.amazonaws.com/backend:latest
-    task_definition_name: morfeus
-    container_port: 80
-    memory_hard_limit: 4096
-    host_port: 0
-    task_cpu: 128
-    task_memory: 1024
-    host_name: webserver
-    host: http://18.220.64.40:80
-    volume_name: nginx-volume
-    source_path: /var/log/nginx-volume
-    container_path: /nginx-volume
+    volume_name1: spiner
+    source_path1: /sniper
+    container_path1: /opt/tornado/data/faq_index
+    volume_name2: spiner-logs
+    source_path2: /var/log/supervisor
+    container_path2: /var/log/supervisor
+   
 
 
 

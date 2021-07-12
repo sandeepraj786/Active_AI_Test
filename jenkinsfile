@@ -10,11 +10,11 @@ pipeline {
           steps{
              script{
               properties([
-                 parameters {[
-                    choice(name: 'App_Name', choices: ['morfeus','runtime','training'], description: ''),
-                    choice(name: 'Service_Name', choices: ['morfeusadmin','morfeus-app','sniper-worker','triniti-worker'], description: ''),
-
-                 ]}
+                 parameters ([
+                    choice(name: 'App_Name', choices: ['morfeus','runtime','training'], description: 'cluster to be used'),
+                    choice(name: 'Service_Name', choices: ['morfeusadmin','morfeus-app','triniti-3-3-1','sniper-worker','sniper-master','training-manager','AI-triniti-master-svc'], description: 'services to be used'),
+                    string(name: 'AWS_ECR_ID', defaultValue: "nginx", description: 'image  to be used'),
+                 ])
                
     
 
@@ -27,13 +27,26 @@ pipeline {
          
       stage('Run Ansible playbook') {
                steps {
-	               if (env.App_Name =="morfeus" & app.Service_Name=="morfeusadmin"){
-                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
+	         script{morfeus-app")
+	               if (App_Name =="morfeus" && Service_Name=="morfeusadmin" || " || (App_Name=="runtime" && Service_Name=="triniti-3-3-1") || (App_Name=="training" && Service_Name=="training-manager"){
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-scripts/deploy-script.yaml   --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
 
-                  }else{
-                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot2-ai.yml   --extra-vars 'env=${App_Name} app=$Service_Name '"
+                  }else if(App_Name=="runtime" && Service_Name=="sniper-worker"){
+                      sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-scripts/deploy-script2.yaml   --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
 
                   }
+                    
+
+                  }else if(App_Name=="training" && Service_Name=="AI-triniti-master-svc"){
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/ansible/deploy-scripts/deploy-script3.yaml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
+
+                  }
+                      
+
+                  }else{
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/ansible/deploy-scripts/deploy-script4.yaml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
+                  }
+		 } 
                      
 	             
          }
