@@ -38,13 +38,13 @@ pipeline {
                     
 
                   else if(App_Name=="training" && Service_Name=="AI-triniti-master-svc"){
-                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/ansible/deploy-chatbot3-ai.yml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot3-ai.yml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
 
                   }
                       
 
                   else{
-                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/ansible/deploy-chatbot4-ai.yml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
+                     sh "ansible-playbook /var/lib/jenkins/workspace/Active-Ai-Test-Job/ansible/deploy-chatbot4-ai.yml  --extra-vars 'env=${App_Name} app=$Service_Name image=${AWS_ECR_ID} '"
                   }
 		 } 
                      
