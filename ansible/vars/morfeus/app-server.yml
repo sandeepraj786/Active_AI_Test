@@ -6,8 +6,8 @@ applications:
     task_definition_name: 
     container_port: 
     host_port: 
-    host_name: 
-    host: 
+    host_name: ""
+    host: ""
     volume_name: 
     source_path: 
     container_path: 
