@@ -1,6 +1,6 @@
 #VPC Details
 vpc_id: "vpc-7239a319"
-cluster_name: AI-runtime
+cluster_name: AI-training
 
 #Container details
 alb_listener_port: 80

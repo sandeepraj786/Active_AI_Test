@@ -10,6 +10,7 @@
       tags: Initialize the app properties and defaults
       set_fact:
          application: "{{ applications[app] }}"
+         defaults: "{{ applications['defaults'] }}"
 
     #Gather facts related to target group
     - name: Gather facts related to target group
@@ -84,8 +85,8 @@
             image: '{{ application.app_image }}'
             memory: "{{ application.memory_hard_limit}}"
             environment:
-              - name: "{{application.host_name}}"
-                value: "{{application.host}}"
+              - name: "{{application.host_name | default(defaults.host_name)}}"
+                value: "{{application.host | default(defaults.host)}}"
             portMappings:
               - containerPort: '{{application.container_port }}'
                 hostPort: '{{application.host_port }}'
