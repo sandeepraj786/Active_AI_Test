@@ -3,8 +3,8 @@
   connection: local
   gather_facts: False
   vars_files:
-    - '/vars/{{ env }}/variables.yml'
-    - '/vars/{{ env }}/app-server.yml'
+    - "vars/{{ env }}/variables.yml"
+    - "vars/{{ env }}/app-server.yml"
   tasks:
     - name: Initialize
       tags: Initialize the app properties and defaults
