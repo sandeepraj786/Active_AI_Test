@@ -1,4 +1,4 @@
- applications:
+applications:
   morfeusadmin:
     app_name: morfeusadmin
     app_image: "{{image}}"
