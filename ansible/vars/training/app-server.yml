@@ -7,8 +7,12 @@ applications:
     memory_hard_limit: 128
     container_port: 8090
     host_port: 8090
-    host_name: TRINITI
-    host: http://172.16.1.157
+    host_name1: TRINITI
+    host1: http://172.16.1.157
+    host_name2: REDIS_HOST
+    host2: preprodrediscluster.lydffc.0001.euw1.cache.amazonaws.com
+    host_name3: SPOTTER
+    host3: http://172.16.1.157:9000
     volume_name: manager
     source_path: /var/log/supervisor
     container_path: /var/log/supervisor
@@ -19,10 +23,10 @@ applications:
     app_image: "{{image}}"
     task_definition_name: AI-triniti-master
     memory_hard_limit: 16384
-    container_port: 8080
-    host_port: 8080
-    host_name: ai-triniti
-    host: ai-triniti-master
+    container_port1: 8080
+    host_port1: 8080
+    container_port2: 80
+    host_port2: 80
     volume_name: supervisor
     source_path: /var/log/supervisor
     container_path: /var/log/supervisor  
@@ -34,12 +38,9 @@ applications:
     memory_hard_limit: 14336
     container_port: 8888
     host_port: 9000
-    host_name: SPOTTER_MASTER
-    host: preprodrediscluster.lydffc.0001.euw1.cache.amazonaws.com
     volume_name1: spiner
     source_path1: /sniper
     container_path1: /opt/tornado/data/faq_index
     volume_name2: superviser
     source_path2: /var/log/superviser
     container_path2: /superviser
-   

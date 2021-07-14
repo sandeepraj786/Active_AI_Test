@@ -83,22 +83,24 @@
             essential: true
             image: '{{ application.app_image }}'
             memory: "{{ application.memory_hard_limit}}"
+            environment:
+              - name: "{{application.host_name1}}"
+                value: "{{application.host1}}"
+              - name: "{{application.host_name2}}"
+                value: "{{application.host2}}"
+              - name: "{{application.host_name3}}"
+                value: "{{application.host3}}"    
             portMappings:
               - containerPort: '{{application.container_port }}'
                 hostPort: '{{application.host_port }}'
                 protocol: 'tcp'
             mountPoints:
-              - containerPath: '{{application.container_path1}}'
-                sourceVolume: '{{application.volume_name1}}'
-              - containerPath: '{{application.container_path2}}'
-                sourceVolume: '{{application.volume_name2}}'  
+              - containerPath: '{{application.container_path}}'
+                sourceVolume: '{{application.volume_name}}'
         volumes: 
-          - name: '{{application.volume_name1}}'
+          - name: '{{application.volume_name}}'
             host:
-              sourcePath: '{{application.source_path1}}'
-          - name: '{{application.volume_name2}}'
-            host:
-              sourcePath: '{{application.source_path2}}'
+              sourcePath: '{{application.source_path}}'
       register: td
     - debug: var=td verbosity=2
     
@@ -126,4 +128,3 @@
             containerPort: '{{ application.container_port }}'
       register: ecs_service
     - debug: var=ecs_service verbosity=2
-

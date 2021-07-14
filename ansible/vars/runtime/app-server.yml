@@ -21,8 +21,6 @@ applications:
     memory_hard_limit: 10240
     container_port: 8888
     host_port: 9000
-    host_name: webserver
-    host: http://18.220.64.40:80
     volume_name1: spiner
     source_path1: /sniper
     container_path1: /opt/tornado/data/faq_index
@@ -30,8 +28,6 @@ applications:
     source_path2: /var/log/supervisor
     container_path2: /var/log/supervisor
    
- 
-  
   
 
    

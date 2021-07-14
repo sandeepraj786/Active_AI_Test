@@ -1,17 +1,4 @@
-applications:
-  defaults:
-    app_name: 
-    app_image: 
-    memory_hard_limit: 
-    task_definition_name: 
-    container_port: 
-    host_port: 
-    host_name: null
-    host: null
-    volume_name: 
-    source_path: 
-    container_path: 
-
+ applications:
   morfeusadmin:
     app_name: morfeusadmin
     app_image: "{{image}}"
@@ -19,8 +6,8 @@ applications:
     task_definition_name: morfeus-admin
     container_port: 8080
     host_port: 8080
-    #host_name: ENV_PARAM
-    #host: uat
+    host_name: ENV_PARAM
+    host: uat
     volume_name: superviser
     source_path: /var/log/superviser
     container_path: /var/log/supervisor
@@ -38,6 +25,7 @@ applications:
     volume_name: superviser-1
     source_path: /var/log/supervisor
     container_path: /var/log/supervisor
+
 
 
 
